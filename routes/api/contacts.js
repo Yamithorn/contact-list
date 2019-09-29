@@ -19,20 +19,20 @@ router.get("/", async (req, res) => {
         if (contacts) {
 
             res
-                .status(200)
+                .status(200) // OK
                 .json(contacts);
 
         } else {
 
-            res.status(404);
+            res.status(404); // Not Found
 
         }
 
     } catch (error) {
 
         res
-            .status(400)
-            .json(contact);
+            .status(400) // Bad Request
+            .json(error);
 
     }
 
@@ -50,20 +50,20 @@ router.get("/:id", async (req, res) => {
         if (contact) {
 
             res
-                .status(200)
+                .status(200) // OK
                 .json(contact);
 
         } else {
 
-            res.status(404);
+            res.status(404); // Not Found
 
         }
 
     } catch (error) {
 
         res
-            .status(400)
-            .json(contact);
+            .status(400) // Bad Request
+            .json(error);
 
     }
 
@@ -78,7 +78,7 @@ router.post("/add", async (req, res) => {
     if (!isValid) {
 
         res
-            .status(400)
+            .status(400) // Bad Request
             .json(errors);
 
     }
@@ -90,19 +90,19 @@ router.post("/add", async (req, res) => {
         if (contactPhoneNumber) {
 
             res
-                .status(409)
+                .status(409) // Conflict
                 .json({ phoneNumber: "Phone number already exists" });
 
         } else {
 
-            res.status(204);
+            res.status(204); // No Content
 
         }
 
     } catch (error) {
 
         res
-            .status(400)
+            .status(400) // Bad Request
             .json(error);
     }
 
@@ -120,14 +120,14 @@ router.post("/add", async (req, res) => {
         const contact = await newContact.save();
 
         res
-            .status(201)
+            .status(201) // Created
             .json(contact);
 
 
     } catch (error) {
 
         res
-            .status(400)
+            .status(400) // Bad Request
             .json(error);
 
     }
@@ -143,7 +143,7 @@ router.put("/edit/:id", async (req, res) => {
     if (!isValid) {
 
         res
-            .status(400)
+            .status(400) // Bad Request
             .json(errors);
 
     }
@@ -166,19 +166,19 @@ router.put("/edit/:id", async (req, res) => {
         if (contact) {
 
             res
-                .status(202)
+                .status(200) // OK
                 .json(contact);
 
         } else {
 
-            res.status(404);
+            res.status(404); // Not Found
 
         }
 
     } catch (error) {
 
         res
-            .status(400)
+            .status(400) // Bad Request
             .json(error);
 
     }
@@ -186,7 +186,7 @@ router.put("/edit/:id", async (req, res) => {
 });
 
 // Delete a contact
-router.delete("/remove/:id", async (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
 
     const id = req.params.id;
 
@@ -197,19 +197,19 @@ router.delete("/remove/:id", async (req, res) => {
         if (contact) {
 
             res
-                .status(200)
-                .json(contact);
+                .status(200) // OK
+                .json(contact.id);
 
         } else {
 
-            res.status(404);
+            res.status(404); // Not Found
 
         }
 
     } catch (error) {
 
         res
-            .status(400)
+            .status(400) // Bad Request
             .json(error);
 
     }
