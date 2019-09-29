@@ -11,18 +11,26 @@ router.get("/test", (req, res) => res.json({ msg: "This is the contacts route" }
 router.get("/", async (req, res) => {
 
     try {
-
+        // Find all the contacts available and sort them by their first names
         const contacts = await Contact
             .find()
             .sort({ firstName: 1 });
 
-        return res
-            .status(200)
-            .json(contacts);
+        if (contacts) {
+
+            res
+                .status(200)
+                .json(contacts);
+
+        } else {
+
+            res.status(404);
+
+        }
 
     } catch (error) {
 
-        return res
+        res
             .status(400)
             .json(contact);
 
@@ -36,16 +44,24 @@ router.get("/:id", async (req, res) => {
     const id = req.params.id;
 
     try {
-
+        // Find a single contact using the params id available in the request
         const contact = await Contact.findOne({ _id: id });
 
-        return res
-            .status(200)
-            .json(contact);
+        if (contact) {
+
+            res
+                .status(200)
+                .json(contact);
+
+        } else {
+
+            res.status(404);
+
+        }
 
     } catch (error) {
 
-        return res
+        res
             .status(400)
             .json(contact);
 
@@ -58,33 +74,39 @@ router.post("/add", async (req, res) => {
 
     const { errors, isValid } = validateContactInput(req.body);
 
+    // Validate whether the contact form has all the required and correct information
     if (!isValid) {
 
-        return res
+        res
             .status(400)
             .json(errors);
 
     }
 
     try {
-
+        // Once the contact is pushed in the request, check to see if a contact exist by that phone number already
         const contactPhoneNumber = await Contact.findOne({ phoneNumber: req.body.phoneNumber });
 
         if (contactPhoneNumber) {
 
-            return res
-                .status(400)
+            res
+                .status(409)
                 .json({ phoneNumber: "Phone number already exists" });
+
+        } else {
+
+            res.status(204);
 
         }
 
     } catch (error) {
 
-        return res
+        res
             .status(400)
             .json(error);
     }
 
+    // The contact does not exist within our database so we go ahead and create a new one
     const newContact = new Contact({
 
         firstName: req.body.firstName,
@@ -97,14 +119,14 @@ router.post("/add", async (req, res) => {
 
         const contact = await newContact.save();
 
-        return res
-            .status(200)
+        res
+            .status(201)
             .json(contact);
 
 
     } catch (error) {
 
-        return res
+        res
             .status(400)
             .json(error);
 
@@ -113,13 +135,14 @@ router.post("/add", async (req, res) => {
 });
 
 // Update a previously created contact
-router.put("/update/:id", async (req, res) => {
+router.put("/edit/:id", async (req, res) => {
 
     const { errors, isValid } = validateContactInput(req.body);
 
+    // Validate whether the contact form has all the required and correct information when it is being edited
     if (!isValid) {
 
-        return res
+        res
             .status(400)
             .json(errors);
 
@@ -137,16 +160,24 @@ router.put("/update/:id", async (req, res) => {
     });
 
     try {
-
+        // Key of new was added so the new contact was returned after being updated
         const contact = await Contact.findOneAndUpdate({ _id: id }, updatedContact, { new: true });
 
-        return res
-            .status(200)
-            .json(contact);
+        if (contact) {
+
+            res
+                .status(202)
+                .json(contact);
+
+        } else {
+
+            res.status(404);
+
+        }
 
     } catch (error) {
 
-        return res
+        res
             .status(400)
             .json(error);
 
@@ -160,16 +191,24 @@ router.delete("/remove/:id", async (req, res) => {
     const id = req.params.id;
 
     try {
-
+        // Find a single contact using the params id available in the request for it to then be deleted
         const contact = await Contact.findOneAndDelete({ _id: id });
 
-        return res
-            .status(200)
-            .json(contact);
+        if (contact) {
+
+            res
+                .status(200)
+                .json(contact);
+
+        } else {
+
+            res.status(404);
+
+        }
 
     } catch (error) {
 
-        return res
+        res
             .status(400)
             .json(error);
 
