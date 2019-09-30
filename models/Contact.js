@@ -16,6 +16,11 @@ const ContactSchema = new Schema({
         require: true,
         trim: true
     },
+    email: {
+        type: String,
+        require: true,
+        trim: true
+    },
     phoneNumber: {
         type: String,
         require: true,

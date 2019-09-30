@@ -4,12 +4,10 @@ const ContactErrorsReducer = (oldState = [], action) => {
 
     Object.freeze(oldState);
 
-    let newState = Object.assign([], action.errors);
-
     switch (action.type) {
 
         case RECEIVE_CONTACT_ERRORS:
-            return newState;
+            return action.errors;
 
         default:
             return oldState;

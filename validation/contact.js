@@ -7,6 +7,7 @@ module.exports = function validateContactInput(data) {
 
     data.firstName = validText(data.firstName) ? data.firstName : "";
     data.lastName = validText(data.lastName) ? data.lastName : "";
+    data.email = validText(data.email) ? data.email : "";
     data.phoneNumber = validText(data.phoneNumber) ? data.phoneNumber : "";
 
     if (Validator.isEmpty(data.firstName)) {
@@ -15,6 +16,14 @@ module.exports = function validateContactInput(data) {
 
     if (Validator.isEmpty(data.lastName)) {
         errors.lastName = "Last name is required";
+    }
+
+    if (Validator.isEmpty(data.email)) {
+        errors.lastName = "E-mail is required";
+    }
+
+    if (Validator.isEmail(data.lastName)) {
+        errors.lastName = "E-mail is invalid";
     }
 
     if (Validator.isEmpty(data.phoneNumber)) {

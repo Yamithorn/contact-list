@@ -1,0 +1,50 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    margin: 30px auto 0 auto;
+    min-width: 430px;
+    padding-bottom: 30px;
+    border-bottom: solid gray;
+    border-bottom-width: thin;
+}
+
+.contacts-header {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.add-contacts-symbol {
+    font-size: 100px;
+    color: gray;
+    line-height: 15px;
+    padding: 25px 5px;
+}
+
+.add-contacts-symbol:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.contact {
+    width: 97%;
+    padding: 20px 0 20px 20px;
+}
+
+.contact:hover {
+    background-color: rgba(168, 164, 164, 0.1);
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.contact-name {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+.contact-email {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color: gray;
+}

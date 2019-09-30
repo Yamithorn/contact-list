@@ -14,12 +14,14 @@ const contactsReducer = (oldState = {}, action) => {
 
         case RECEIVE_ALL_CONTACTS:
 
-            newState = action.contacts.data;
+            newState = Object.assign({}, oldState, action.contacts.data);
             return newState;
 
         case RECEIVE_CONTACT:
 
-            newState = action.contact.data;
+            const newIndex = Math.max(...Object.keys(newState)) + 1;
+            newState[newIndex] = action.contact.data;
+
             return newState;
 
         case DELETE_CONTACT:

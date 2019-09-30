@@ -56,6 +56,7 @@ export const fetchAllContacts = () => async (dispatch) => {
     try {
 
         const contacts = await APIUtil.getAllContacts();
+
         dispatch(receiveAllContacts(contacts));
 
     } catch (errors) {

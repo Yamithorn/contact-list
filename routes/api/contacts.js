@@ -24,13 +24,13 @@ router.get("/", async (req, res) => {
 
         } else {
 
-            res.status(404); // Not Found
+            return res.status(404); // Not Found
 
         }
 
     } catch (error) {
 
-        res
+        return res
             .status(400) // Bad Request
             .json(error);
 
@@ -55,13 +55,13 @@ router.get("/:id", async (req, res) => {
 
         } else {
 
-            res.status(404); // Not Found
+            return res.status(404); // Not Found
 
         }
 
     } catch (error) {
 
-        res
+        return res
             .status(400) // Bad Request
             .json(error);
 
@@ -77,7 +77,7 @@ router.post("/add", async (req, res) => {
     // Validate whether the contact form has all the required and correct information
     if (!isValid) {
 
-        res
+        return res
             .status(400) // Bad Request
             .json(errors);
 
@@ -89,7 +89,7 @@ router.post("/add", async (req, res) => {
 
         if (contactPhoneNumber) {
 
-            res
+            return res
                 .status(409) // Conflict
                 .json({ phoneNumber: "Phone number already exists" });
 
@@ -101,7 +101,7 @@ router.post("/add", async (req, res) => {
 
     } catch (error) {
 
-        res
+        return res
             .status(400) // Bad Request
             .json(error);
     }
@@ -111,6 +111,7 @@ router.post("/add", async (req, res) => {
 
         firstName: req.body.firstName,
         lastName: req.body.lastName,
+        email: req.body.email,
         phoneNumber: req.body.phoneNumber
 
     });
@@ -119,14 +120,14 @@ router.post("/add", async (req, res) => {
 
         const contact = await newContact.save();
 
-        res
+        return res
             .status(201) // Created
             .json(contact);
 
 
     } catch (error) {
 
-        res
+        return res
             .status(400) // Bad Request
             .json(error);
 
@@ -142,7 +143,7 @@ router.put("/edit/:id", async (req, res) => {
     // Validate whether the contact form has all the required and correct information when it is being edited
     if (!isValid) {
 
-        res
+        return res
             .status(400) // Bad Request
             .json(errors);
 
@@ -155,6 +156,7 @@ router.put("/edit/:id", async (req, res) => {
         _id: id,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
+        email: req.body.email,
         phoneNumber: req.body.phoneNumber
 
     });
@@ -171,13 +173,13 @@ router.put("/edit/:id", async (req, res) => {
 
         } else {
 
-            res.status(404); // Not Found
+            return res.status(404); // Not Found
 
         }
 
     } catch (error) {
 
-        res
+        return res
             .status(400) // Bad Request
             .json(error);
 
@@ -202,13 +204,13 @@ router.delete("/delete/:id", async (req, res) => {
 
         } else {
 
-            res.status(404); // Not Found
+            return res.status(404); // Not Found
 
         }
 
     } catch (error) {
 
-        res
+        return res
             .status(400) // Bad Request
             .json(error);
 
