@@ -1,12 +1,17 @@
 import React, { Component } from "react";
+import { throws } from "assert";
 
 export default class ContactBox extends Component {
 
     constructor(props) {
         super(props);
 
+        this.state = this.props.contact;
+
         this.modalView = this.modalView.bind(this);
+        this.modalEdit = this.modalEdit.bind(this);
         this.outsideClick = this.outsideClick.bind(this);
+        this.editContact = this.editContact.bind(this);
         this.deleteContact = this.deleteContact.bind(this);
     }
 
@@ -31,6 +36,14 @@ export default class ContactBox extends Component {
 
         section.addEventListener("mouseover", mouseEnter);
         section.addEventListener("mouseleave", mouseLeave);
+    }
+
+    update(field) {
+
+        return (e) => this.setState({
+            [field]: e.currentTarget.value
+        });
+
     }
 
     outsideClick() {
@@ -108,6 +121,61 @@ export default class ContactBox extends Component {
         }
     }
 
+    modalEdit() {
+
+        let button;
+        let that;
+
+        function click(e) {
+
+            if ((e.target === button) && (document.getElementsByClassName("modal").length < 2)) {
+
+                const modal = document.getElementsByClassName("modal")[0];
+                modal.style.display = "flex";
+
+                const firstName = document.getElementsByClassName("text-input-a")[0].children[0];
+                firstName.value = that.state.firstName;
+                firstName.onChange = that.update("firstName");
+
+                const lastName = document.getElementsByClassName("text-input-a")[1].children[0];
+                lastName.value = that.state.lastName;
+                lastName.onChange = that.update("lastName");
+
+                const phoneNumber = document.getElementsByClassName("text-input-b")[0].children[1];
+                phoneNumber.value = that.state.phoneNumber;
+                phoneNumber.onChange = that.update("phoneNumber");
+
+                const email = document.getElementsByClassName("text-input-b")[1].children[1];
+                email.value = that.state.email;
+                email.onChange = that.update("email");
+            }
+        }
+
+        if (document.getElementsByClassName("modal").length === 1) {
+
+            window.addEventListener("click", click);
+            const id = this.props.id;
+            button = document.getElementsByClassName("edit-button")[id];
+            that = this;
+
+        }
+    }
+
+    editContact() {
+
+        window.addEventListener("click", click);
+        const button = document.getElementsByClassName("edit-button")[0];
+        const update = this.props.edit;
+        const id = this.props.contact._id;
+
+        function click(e) {
+            if (e.target.className === button.className) {
+                update(id);
+            }
+        }
+
+    }
+
     deleteContact() {
 
         window.addEventListener("click", click);
@@ -149,7 +217,7 @@ export default class ContactBox extends Component {
 
                 <div id={this.props.id} className="feature-buttons">
 
-                    <div className="edit-button">
+                    <div id={this.props.id} className="edit-button" onClick={this.modalEdit}>
                         &#9998;
                     </div>
 

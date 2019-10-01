@@ -50,6 +50,7 @@ class FrontPage extends Component {
                 <ContactBox
                     key={i}
                     id={i++}
+                    edit={this.props.updateContact}
                     delete={this.props.deleteContact}
                     contact={contact} />
             );
@@ -62,26 +63,19 @@ class FrontPage extends Component {
 
     render() {
 
-        if (this.state.contacts.length === 0) {
-
-            return (<div className="loading">Loading...</div>)
-
-        } else {
-
-            return (
-                <div className="front-page">
-                    <div className="header">
-                        <div className="contacts-header">My Contacts</div>
-                        <div className="add-contacts-symbol" onClick={this.addModal}>&#43;</div>
-                    </div>
-                    <div className="unordered-contacts-list-container">
-                        <ul className="unordered-contacts-list">
-                            {this.makeContacts()}
-                        </ul>
-                    </div>
+        return (
+            <div className="front-page">
+                <div className="header">
+                    <div className="contacts-header">My Contacts</div>
+                    <div className="add-contacts-symbol" onClick={this.addModal}>&#43;</div>
                 </div>
-            )
-        }
+                <div className="unordered-contacts-list-container">
+                    <ul className="unordered-contacts-list">
+                        {this.makeContacts()}
+                    </ul>
+                </div>
+            </div>
+        )
     }
 }
 
