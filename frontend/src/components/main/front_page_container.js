@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { fetchAllContacts } from "../../actions/contact_actions";
+import { fetchAllContacts, deleteContact } from "../../actions/contact_actions";
 import FrontPage from "./front_page";
 
 const mapStateToProps = (state) => {
@@ -17,7 +17,8 @@ const mapDispatchToProps = (dispatch) => {
 
     return {
 
-        fetchAllContacts: () => dispatch(fetchAllContacts())
+        fetchAllContacts: () => dispatch(fetchAllContacts()),
+        deleteContact: (id) => dispatch(deleteContact(id))
 
     };
 

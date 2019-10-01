@@ -13,10 +13,10 @@ export const addContact = (contactData) => {
 };
 
 export const editContact = (id) => {
-    return axios.put(`api/contacts/edit${id}`);
+    return axios.put(`api/contacts/edit/${id}`);
 };
 
 export const deleteContact = (id) => {
-    return axios.delete(`api/contacts/delete${id}`);
+    return axios.delete(`api/contacts/delete/${id}`);
 };
 

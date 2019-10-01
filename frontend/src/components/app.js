@@ -11,9 +11,6 @@ const App = () => {
         <ModalAddContainer />
         <Switch>
             <Route exact path="/" component={FrontPageContainer}></Route>
-            {/* <Route exact path="/add" component={}></Route>
-            <Route exact path="/edit" component={}></Route>
-            <Route exact path="/remove" component={}></Route> */}
         </Switch>
     </div>
 };

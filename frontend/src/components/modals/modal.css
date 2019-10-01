@@ -14,24 +14,132 @@
     display: flex;
     background-color: white;
     margin: auto;
-    width: 40%;
-    height: 65%;
+    width: 550px;
+    height: 650px;
     border-radius: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    animation-name: addmodalopen;
+    animation-duration: 0.5s;
 }
 
 .contact-form-container {
-    margin: 30% auto 0 auto;
+    margin: 30px auto 0 auto;
     width: 80%;
 }
 
-/* .contact-form {
+.contact-form {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-} */
-
-.contact-form {
-    
+    align-items: center;
 }
+
+.top-of-contact-form {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding-bottom: 50px;
+}
+
+.cancel-button {
+    color: rgba(43, 138, 128, 0.6);
+    font-size: 20px;
+    padding: 10px;
+}
+
+.save-button {
+    color: rgba(43, 138, 128, 0.6);
+    border: none;
+    background-color: inherit;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.cancel-button:hover, .save-button:hover {
+    background-color: rgba(168, 164, 164, 0.1);
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+input[type=text] {
+    border: none;
+    font-size: 20px;
+}
+
+input[type=text]::placeholder {
+    font-size: 20px;
+    opacity: 0.5;
+}
+
+input[type=text]:focus {
+    outline-width: 0;
+
+    /* animation-name: inputhighlight !important;
+    animation-duration: 1s !important; */
+}
+
+.first-half {
+    display: flex;
+    width: 85%;
+    justify-content: space-between;
+}
+
+.second-half {
+    padding-top: 30px;
+}
+
+.inner-first-half {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-picture {
+    border-radius: 50px;
+    height: 100px;
+    width: 100px;
+    align-self: center;
+    background-color: rgb(43, 138, 128);
+}
+
+.add-photo {
+    color: white;
+    line-height: 100px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.profile-picture-input {
+    /* position: relative; */
+    /* z-index: 100; */
+}
+
+.text-input-a, .text-input-b {
+    display: flex;
+    flex-direction: row;
+    border-bottom: solid rgba(112, 112, 112, 0.5) thin;
+    padding-top: 25px;
+    font-size: 20px;
+    height: 30px;
+}
+
+.text-input-a {
+    width: 225px;
+}
+
+.text-input-b {
+    width: 350px;
+    justify-content: space-between;
+}
+
+.text-header {
+    color: rgb(43, 138, 128);
+}
+
+@keyframes addmodalopen {
+    from { opacity: 0 }
+    to { opacity: 1 }
+}
+
+/* @keyframes inputhighlight {
+    from { border-bottom-color: rgba(0, 0, 255, 0) }
+    to { border-bottom-color: rgba(0, 0, 255, 1) }
+} */

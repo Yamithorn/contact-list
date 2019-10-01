@@ -73,41 +73,70 @@ export default class modalAddForm extends Component {
                         <form className="contact-form" onSubmit={this.handleSubmit}>
 
                             <div className="top-of-contact-form">
-                                <div onClick={this.removeModal}>Cancel</div>
-                                <input type="submit" value="Save" />
+
+                                <div className="cancel-button" onClick={this.removeModal}>Cancel</div>
+                                <input className="save-button" type="submit" value="Save" />
+
                             </div>
 
+                            <div className="first-half">
+                                <div className="profile-picture">
+                                    <div className="add-photo">Add Photo</div>
+                                    {/* <input className="profile-picture-input" type="file" /> */}
+                                </div>
 
-                            <div>
-                                <input type="text"
-                                    value={this.state.firstName}
-                                    onChange={this.update("firstName")}
-                                    placeholder="First Name"
-                                />
+                                <div className="inner-first-half">
+
+                                    <div className="text-input-a">
+
+                                        <input type="text"
+                                            value={this.state.firstName}
+                                            onChange={this.update("firstName")}
+                                            placeholder="First Name"
+                                        />
+
+                                    </div>
+
+                                    <div className="text-input-a">
+
+                                        <input type="text"
+                                            value={this.state.lastName}
+                                            onChange={this.update("lastName")}
+                                            placeholder="Last Name"
+                                        />
+
+                                    </div>
+
+                                </div>
+
                             </div>
 
-                            <div>
-                                <input type="text"
-                                    value={this.state.lastName}
-                                    onChange={this.update("lastName")}
-                                    placeholder="Last Name"
-                                />
-                            </div>
+                            <div className="second-half">
 
-                            <div>
-                                <input type="text"
-                                    value={this.state.phoneNumber}
-                                    onChange={this.update("phoneNumber")}
-                                    placeholder="+1 917 000 0000"
-                                />
-                            </div>
+                                <div className="text-input-b">
 
-                            <div>
-                                <input type="text"
-                                    value={this.state.email}
-                                    onChange={this.update("email")}
-                                    placeholder="example@gmail.com"
-                                />
+                                    <div className="text-header">phone:</div>
+
+                                    <input type="text"
+                                        value={this.state.phoneNumber}
+                                        onChange={this.update("phoneNumber")}
+                                        placeholder="+1 917 000 0000"
+                                    />
+
+                                </div>
+
+                                <div className="text-input-b">
+
+                                    <div className="text-header">e-mail:</div>
+
+                                    <input type="text"
+                                        value={this.state.email}
+                                        onChange={this.update("email")}
+                                        placeholder="example@gmail.com"
+                                    />
+
+                                </div>
+
                             </div>
 
                         </form>

@@ -117,6 +117,7 @@ export const deleteContact = (id) => async (dispatch) => {
     try {
 
         const deletedContactId = await APIUtil.deleteContact(id);
+
         dispatch(removeContact(deletedContactId));
 
     } catch (errors) {

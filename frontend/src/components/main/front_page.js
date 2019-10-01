@@ -42,11 +42,15 @@ class FrontPage extends Component {
 
     makeContacts() {
 
+        let i = 0;
+
         const contacts = this.state.contacts.map((contact) => {
 
             return (
                 <ContactBox
-                    key={contact._id}
+                    key={i}
+                    id={i++}
+                    delete={this.props.deleteContact}
                     contact={contact} />
             );
 
